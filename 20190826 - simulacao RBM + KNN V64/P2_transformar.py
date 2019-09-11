@@ -44,7 +44,6 @@ def ini(asset, nome_arquivo, tipoJanela, periodoTotal, janelaTreino, tipoNormali
         import numpy as np
         import f_util
         import  f_grafico
-
         print("==>> P2_transformar:", f_util.imprimirHora(), "N=", tipoNormalizacao, "J=", tipoJanela)
 
         entrada1 = open("arqTotais/" + asset + ".csv", 'r')  # + " - dados agrupados de 2010 a 2016.csv","r")
@@ -166,7 +165,7 @@ def ini(asset, nome_arquivo, tipoJanela, periodoTotal, janelaTreino, tipoNormali
                 	str(float(avgPriceC[i]))  		+ ";" + 
                 	str(float(closePriceC[i]))		+ ";" + 
                 	str(float(bestPriceC[i])) 		+ ";" + 
-                	str(float(bestBidPriceC[i])) 	+ ";" + \
+                	str(float(bestBidPriceC[i])) 	        + ";" + \
                 	str(int(numTraderC[i]))   		+ ";" + 
                 	str(int(amountTraderC[i])) 		+ ";" + 
                 	str(int(volumeFinancC[i])) 

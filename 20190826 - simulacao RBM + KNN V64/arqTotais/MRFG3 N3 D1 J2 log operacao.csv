@@ -1,0 +1,4 @@
+classificador;data;sinalcompra;acertou;openprice;closeprice;vlrcompra;vlrvenda;lucrobrutoR;impostorendaR;custotransacaoR;lucroliquidoR;lucrobrutoP;lucroliquidoP;custotransacaoP;custotransacaoAcumuladoP;lucrobrutoAcumuladoP;lucroliquidoAcumuladoP;evolucaoCapitalR;impostoRendaAcumuladoR
+7;20170801;1;S;6.46;6.49;6460.00;6490.00;30.00;4.47;12.11;17.89;0.46;0.36;0.10;0.10;0.46;0.36;17.89;4.47
+7;20170802;1;S;6.51;6.55;6510.00;6550.00;40.00;6.47;14.13;25.87;0.61;0.48;0.14;0.24;1.08;0.84;43.76;10.94
+7;20170804;1;S;6.56;6.92;6560.00;6920.00;360.00;70.44;78.24;281.76;5.49;4.28;1.21;1.44;6.57;5.12;325.52;81.38

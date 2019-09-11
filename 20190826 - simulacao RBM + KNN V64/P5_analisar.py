@@ -10,8 +10,8 @@ def ini(dataInicio, nomeAtivo, qtdeDiasTeste):
     print("==>> P6_analisar:   ", f_util.imprimirHora()) ##, " Qtde de combinações", len(df))
 
     result = pd.concat([
-    pd.io.parsers.read_csv("arqInicial/cabecalho2.csv", header=-1),
-    pd.io.parsers.read_csv("arqTotais/" + nomeAtivo + " D1 J2 N3 Totais.csv", header=-1),
+    pd.io.parsers.read_csv("arqInicial/cabecalho2.csv", header=None),
+    pd.io.parsers.read_csv("arqTotais/" + nomeAtivo + " D1 J2 N3 Totais.csv", header=None),
     ])
 
     df = pd.DataFrame(result)
@@ -27,18 +27,18 @@ def ini(dataInicio, nomeAtivo, qtdeDiasTeste):
 
     result = pd.concat([
         # pd.io.parsers.read_csv(nomeArquivo1, header=-1),
-        pd.io.parsers.read_csv(nomeArquivo, header=-1),
-        pd.io.parsers.read_csv(cab, header=-1),
-        pd.io.parsers.read_csv(dadosTeste, header=-1),
-        pd.io.parsers.read_csv(dadosLog, header=-1),
-        pd.io.parsers.read_csv(medidasDispersao, header=-1)
+        pd.io.parsers.read_csv(nomeArquivo, header=None),
+        pd.io.parsers.read_csv(cab, header=None),
+        pd.io.parsers.read_csv(dadosTeste, header=None),
+        pd.io.parsers.read_csv(dadosLog, header=None),
+        pd.io.parsers.read_csv(medidasDispersao, header=None)
 
     ])
 
     df = pd.DataFrame(result)
 
     df.to_csv('Result/' + str(dataInicio) + " " + nomeAtivo + " Extrato " + str(qtdeDiasTeste) + " dias.csv", header=0,
-              index=None)
+              index=-1)
 
 
     f_grafico.f_graficoRetornoAcumulado(nomeAtivo, dataInicio, qtdeDiasTeste)
@@ -120,8 +120,8 @@ def gerarTabelaConsolidada(qtdeDiasTeste, nomeAtivo):
     df.to_csv("Result/Extrato consolidado" + str(qtdeDiasTeste) + " dias.csv", header=0, index=None)
 
     result2 = pd.concat([
-       pd.io.parsers.read_csv("arqInicial/cabecalho2.csv", header=-1, sep=";"),
-       pd.io.parsers.read_csv("Result/Extrato consolidado" + str(qtdeDiasTeste) + " dias.csv", header=-1, sep=";")])
+       pd.io.parsers.read_csv("arqInicial/cabecalho2.csv", header=None, sep=";"),
+       pd.io.parsers.read_csv("Result/Extrato consolidado" + str(qtdeDiasTeste) + " dias.csv", header=None, sep=";")])
 
     df = pd.DataFrame(result2)
     df.to_csv("Result/Extrato consolidadoAux.csv", header=0, index=None)

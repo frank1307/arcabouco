@@ -36,7 +36,7 @@ def svm(TreinoX, TesteX, TreinoY, TesteY):
     gammaSVM = 0.3
     #clf = SVC(C=1, kernel=kernelSVM, decision_function_shape='ovo', max_iter= Qtde_Interacao2 , random_state=rs , gamma=gammaSVM)
 
-    clf= SVC()
+    clf= SVC(gamma='scale')
     clf.fit(TreinoX, TreinoY)
     predicao = clf.predict(TesteX)
     return predicao

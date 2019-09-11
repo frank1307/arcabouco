@@ -1,0 +1,11 @@
+AMOSTRA
+Dados; DataInicial; DataFinal; QtdeDias; PrecoInicial; PrecoFinal; Classe0; Classe1; Classe0; Classe1
+janelaDeslizante;03/07/2017;11/08/2017;30;13.20;15.49;43.33;56.67;13;17
+ 
+BASELINE
+OraculoGabarito; BuyAndHold; BuyAndHoldP; CDI;	Selic;	Ibovespa;	IGPM; QtdeMeses
+pendente;2.29;14.40;1.60;1.60;12.26;1288.15;2
+ 
+MEDIDASRISCO
+Serie; Volatilidade; DesvioPadrao; Sharpe; Volatilidade Downside; DpDownside; Sortino;
+RetornoFechamento-Abertura;3.79;0.24;3.38;1.85;0.12;6.94

@@ -13,23 +13,45 @@ assetsList = [  'PETR4', 'VALE3', 'BBDC4', 'BBAS3', 'PETR3', 'ITSA4', 'GGBR4',
 				]
 
 
+entryFile= "arqInicial/tudao_Selecionado_2008_a_2018.txt"
+
 
 horaInicio          = f_util.imprimirHora()
 
 dataInicio          = 20170601  #OK
 qtdeDiasTreino      = 21
-qtdeDiasTeste       = 30  #745 #486   # 30  ou 132 ou 243  729
-tipoEstrategia      = 1   #=> 1=compra Open e vende em Close  ///// 2= alvo de 1%
+qtdeDiasTeste       = 30 
+# 30
+# 132
+# 243
+# 729
+
+tipoEstrategia      = 1   
+# 1 = compra Open e vende em Close 
+# 2 = Alvo de 1%
 
 volumeNegociado     = 1000
 janelaTreino        = 20
-janelaTeste         = 1   #Fixo em 1 ok
+janelaTeste         = 1   
+#Fixo em 1 ok
 
-tipoJanela          = 2   ###  1=Janela Fixa e 2=Janela Deslizante
-tipoNormalizacao    = 3   ##=>> 0=serie original , 1=serie logaritmo, 2=serie logaritmo sem outlier , 3=serieclusterizada
-qtdeClassificadores = 10  # quantidade de classiciadores
+tipoJanela          = 2   
+# 1 = Janela Fixa
+# 2 = Janela Deslizante
 
-periodoTotal        = qtdeDiasTreino + qtdeDiasTeste +1 #=>> o 1 é para tratar o erro do proximo campo
+
+tipoNormalizacao    = 3   
+# 0 = serie original 
+# 1 = serie logaritmo
+# 2 = serie logaritmo sem outlier
+# 3 = serieclusterizada
+
+
+qtdeClassificadores = 10  
+# quantidade de classiciadores
+
+periodoTotal        = qtdeDiasTreino + qtdeDiasTeste +1 
+# Segundo comentário original, esse 1 era pra tratar algum tipo de erro do próximo campo 
 
 print("===================================================")
 print("              configuração Inicial ")
@@ -44,7 +66,18 @@ print("periodo total=", periodoTotal)
 
 
 
-dataFinal = (P1_coletar.ini(assetsList, int(dataInicio), periodoTotal))
+dataFinal = (P1_coletar.separarAtivo( assetsList,        #lista de ativos
+                                      int(dataInicio),   #A partir de que data os testes serão realizado
+                                      periodoTotal,      # Tempo total do teste
+                                      entryFile)         # Nome do arquivo onde serão separados os dados
+                                    )
+#data final é uma string no formato "ano"+"mes"
+#   separarAtivo pega os dados iniciais de um arquivo com entradas
+#   data;ativo;openPrice;maxPrice;minPrice;avgPrice;closePrice;bestPrice;bestBidPrice;numTrader;amountTrader;volumeFinanc
+#   e os coloca separados por ativo/arquivo na pasta arqTotais 
+
+
+
 
 if tipoJanela == 2:
         periodoTotal = qtdeDiasTreino - janelaTreino
@@ -57,15 +90,32 @@ for asset in assetsList:
     dataset2 = [asset + " PD D01 Bov.csv"]
     dataset3 = [asset + " MD D01 Bov.csv"]
 
-    retornoP2 = P2_transformar.ini( asset, 
-    								dataset, 
-    								tipoJanela, 
-    								periodoTotal, 
-    								janelaTreino, 
-    								tipoNormalizacao, 
-    								str(dataInicio),  
-    								qtdeDiasTeste
+    retornoP2 = P2_transformar.ini( asset,                  # ativo a ser analisado
+    								dataset,                # nome do arquivo modificado
+    								tipoJanela,             #ver acima
+    								periodoTotal,           # o tempo total de testes
+    								janelaTreino,           #tamanho da janela de treino
+    								tipoNormalizacao,       # ver acima
+    								str(dataInicio),        # data de início
+    								qtdeDiasTeste           #quantidade de dias de teste
     							) 
+    #lê os dados de asset.csv, os normaliza e coloca em "arqTotais/"+ asset+ "D01 Bov.csv"
+    # Parara cada dia, uma entrada com 
+    #       Preço de abertura
+    #       Preço Máximo
+    #       Preço Médio
+    #       Preço de fechamento
+    #       Melhor preço
+    #       Melhor preço(bid)
+    #       Número de trades
+    #       Volume de trade
+    #       Volume financeiro 
+    #       Atributo classe definido no começo do arquivo P2_transformar
+
+
+    # no caso de janela deslizante, coloca os dados da janela em "arqTotais/" + asset + " JanelaDesl.csv"
+        # Mesma configuração anterior, mas com a data na frente pra janela
+
     P3_classificar.ini( dataset, 
     					dataset2, 
     					dataset3, 
@@ -89,7 +139,7 @@ for asset in assetsList:
     P5_analisar.ini(dataInicio, asset, qtdeDiasTeste)
 
 
-#P5_analisar.gerarTabelaConsolidada(qtdeDiasTeste, assetsList)
+P5_analisar.gerarTabelaConsolidada(qtdeDiasTeste, assetsList)
 
 
 print("==>> Término Menu Principal <<===")

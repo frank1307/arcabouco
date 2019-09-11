@@ -1,0 +1,9 @@
+Serie; media; desvioPadrao; desvioAbsoluto; mediana; quantil; minimo; maximo; amplitude; variancia
+PrecoAbertura;8.67;0.28;0.24;8.70;8.70;8.10;9.08;0.98;0.08
+PrecoFechamento;8.65;0.29;0.24;8.67;8.67;8.13;9.07;0.94;0.08
+PrecoMaximo;8.77;0.28;0.24;8.84;8.84;8.18;9.14;0.96;0.08
+PrecoMinimo;8.53;0.31;0.27;8.59;8.59;7.80;8.97;1.17;0.10
+PrecoMedio;8.64;0.30;0.26;8.65;8.65;8.04;9.04;1.00;0.09
+PrecoMelhorCompra;8.66;0.28;0.24;8.67;8.67;8.14;9.07;0.93;0.08
+PrecoMelhor;8.64;0.28;0.24;8.65;8.65;8.12;9.04;0.92;0.08
+

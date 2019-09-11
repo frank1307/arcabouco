@@ -53,8 +53,9 @@ def medidasDispersaotendencia (serieOriginal):
 
 def MD(serieReal, seriePrevista):
     from sklearn import metrics
+    import numpy as np
     acuracia = metrics.accuracy_score (serieReal,seriePrevista) * 100
-    f1scores = metrics.f1_score       (serieReal,seriePrevista) * 100
+    f1scores = metrics.f1_score       (serieReal,seriePrevista,labels=np.unique(seriePrevista)) * 100
     recalls  = metrics.recall_score   (serieReal,seriePrevista) * 100
     precision= metrics.precision_score(serieReal,seriePrevista) * 100
 
@@ -63,8 +64,9 @@ def MD(serieReal, seriePrevista):
 # Medidas de Desempenho (Gravando)
 def MDgravar(TesteY, predicao , algoritmo , saida2):
     from sklearn import metrics
+    import numpy as np
     acuracia = metrics.accuracy_score(TesteY,predicao)
-    f1scores = metrics.f1_score(TesteY,predicao)
+    f1scores = metrics.f1_score(TesteY,predicao,labels=np.unique(predicao))
     recalls  = metrics.recall_score(TesteY,predicao)
     precision= metrics.precision_score(TesteY,predicao)
 
