@@ -39,7 +39,7 @@ import f_indicadores
 import f_util
 
 
-def ini(nomeAtivo, entrada2, tipoJanela, tipoNormalizacao, dataInicio, dtIni, dtFim, qtdeClassificadores, tipo, tipoEstrategia,  volumeNegociado, retornoP2):
+def ini(nomeAtivo, entrada2, tipoJanela, tipoNormalizacao, dataInicio, dtIni, dtFim, qtdeClassificadores, tipoEstrategia,  volumeNegociado, retornoP2):
 
     import numpy as np
     import f_util
@@ -240,12 +240,6 @@ def ini(nomeAtivo, entrada2, tipoJanela, tipoNormalizacao, dataInicio, dtIni, dt
 
                 if valorMaximo < lucroBrutoP:
                     valorMaximo = lucroBrutoP
-
-
-                if tipo == 1:
-                    j = 6
-                    tipo = 0
-
 
                 if j == 6:
                     if lucroBrutoP >= 0:

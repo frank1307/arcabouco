@@ -116,14 +116,18 @@ for asset in assetsList:
     # no caso de janela deslizante, coloca os dados da janela em "arqTotais/" + asset + " JanelaDesl.csv"
         # Mesma configuração anterior, mas com a data na frente pra janela
 
-    P3_classificar.ini( dataset, 
-    					dataset2, 
-    					dataset3, 
-    					qtdeDiasTreino, 
-    					tipoJanela, 
-    					janelaTreino, 
-    					janelaTeste
+    P3_classificar.ini( dataset,            #VER CONFIGURAÇÃO ACIMA
+    					dataset2,           #VER CONFIGURAÇÃO ACIMA
+    					dataset3,           #VER CONFIGURAÇÃO ACIMA
+    					qtdeDiasTreino,     #QUANTIDADE DE DIAS DE TREINO
+    					tipoJanela,         #VER ACIMA
+    					janelaTreino,       #TAMANHO DA JANELA DE TREINO
+    					janelaTeste         #TAMANHO DA JANELA DE TESTE
     				)
+    #Grava em "asset" + " PD D01 Bov.csv" as previsões de 12 classificadores
+    #Grava em "asset" + " MD D01 Bov.csv" as medidas de desempenho   
+
+
     P4_operar.ini(  asset,
     				dataset2, 
     				tipoJanela,  
@@ -132,16 +136,19 @@ for asset in assetsList:
     				int(str(dataInicio)[:6]), 
     				int(dataFinal[:6]), 
     				qtdeClassificadores, 
-    				0, tipoEstrategia, 
+                    tipoEstrategia, 
     				volumeNegociado, 
     				retornoP2)
-    
+
+    # Coloca as operações na pasta arqtotais em alguns arquivos
+
     P5_analisar.ini(dataInicio, asset, qtdeDiasTeste)
 
+    #analise e gera o extrato das operações na pasta resultados
 
 P5_analisar.gerarTabelaConsolidada(qtdeDiasTeste, assetsList)
-
-
+    #gera as imagens na pasta img
+'''
 print("==>> Término Menu Principal <<===")
 print("Hora Início: ", horaInicio)
 print("Hora Fim   : ", f_util.imprimirHora())

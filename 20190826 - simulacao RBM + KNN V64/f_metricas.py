@@ -74,9 +74,12 @@ def MDgravar(TesteY, predicao , algoritmo , saida2):
     f1scores = round(float(f1scores),2)
     recalls  = round(float(recalls),2)
 
-    #print("saida 2 =", saida2)
-    #exit()
-    saida2.write(str(algoritmo) + ";" + str(acuracia) + ";"  + str(f1scores) + ";"  + str(recalls) + ";"  + str(precision)+ "\n")
+    saida2.write(str(algoritmo)     + ";"   + 
+                str(acuracia)       + ";"  + 
+                str(f1scores)       + ";"  + 
+                str(recalls)        + ";"  + 
+                str(precision)      + "\n"
+                )
     return
 
 
@@ -121,13 +124,6 @@ def calculado(serieRealA, seriePrevistaA):
 
         i+=1
 
- #   print("qtdeTotal   :", len(serieReal))
-  #  print("qtdeNegativo:", qtdeNegativo)
-  #  print("qtdePositivo:", qtdePositivo)
-   # print("qtde FN:", falseNegativo)
-   # print("qtde TN:", trueNegativo)
-   # print("qtde FP:", falsePositivo)
-   # print("qtde TP:", truePositivo)
 
     if (truePositivo + trueNegativo) !=0:
         acuracia = (truePositivo + trueNegativo) / ( truePositivo + trueNegativo + falsePositivo + falseNegativo)
@@ -185,5 +181,4 @@ def medidastendencia(tab):
     print("mediana=", mediana)
     print("quantil=", quantil)
     print("moda=", moda)
-#25.11111111111111
     return media, mediana, quantil, moda

@@ -129,48 +129,44 @@ def ini(nome_arquivo, ssaida1, ssaida2, limite, tipoJanela, janelaTreino, janela
     import f_metricas
     print("==>> P3_Classificar:", f_util.imprimirHora(), "J=", tipoJanela, "tamanho do arquivo ", len(nome_arquivo))
 
-    qtde=0
-    while qtde < len(nome_arquivo):
-        saida1 = open("arqTotais/"+ ssaida1[qtde],"w")
-        saida2 = open("arqTotais/"+ ssaida2[qtde],"w")
+    saida1 = open("arqTotais/"+ ssaida1[0],"w")
+    saida2 = open("arqTotais/"+ ssaida2[0],"w")
 
-        dataset = np.loadtxt("arqTotais/"+ nome_arquivo[qtde], delimiter=";")
+    dataset = np.loadtxt("arqTotais/"+ nome_arquivo[0], delimiter=";")
 
-        if tipoJanela ==1:
-            TreinoX = dataset[:limite, 0:-2]  # Pega da primeira até a penultima coluna dos dados
-            Treinoy = dataset[:limite,   -1]  # Pega apenas a ultima coluna dos dados
-            TesteX  = dataset[limite:, 0:-2]
-            TesteY  = dataset[limite:,   -1]
-            r       = f_janelaFixa(TreinoX, TesteX, Treinoy, TesteY)
+    if tipoJanela ==1:
+        TreinoX = dataset[:limite, 0:-2]  # Pega da primeira até a penultima coluna dos dados
+        Treinoy = dataset[:limite,   -1]  # Pega apenas a ultima coluna dos dados
+        TesteX  = dataset[limite:, 0:-2]
+        TesteY  = dataset[limite:,   -1]
+        r       = f_janelaFixa(TreinoX, TesteX, Treinoy, TesteY)
 
-        else:
-           # import f_janelaDeslizante
+    else:
+       # import f_janelaDeslizante
 
-            TesteX = dataset[:,0:-2] # Pega da primeira até a penultima coluna dos dados
-            TesteY = dataset[:,  -1] # Pega apenas a ultima coluna dos dados
-            r = f_janelaDeslizante(janelaTreino, janelaTeste, TesteX, TesteY)
+        TesteX = dataset[:,0:-2] # Pega da primeira até a penultima coluna dos dados
+        TesteY = dataset[:,  -1] # Pega apenas a ultima coluna dos dados
+        r = f_janelaDeslizante(janelaTreino, janelaTeste, TesteX, TesteY)
 
-        r1 = r[0]
-        r2 = r[1]
-        r3 = r[2]
-        r4 = r[3]
-        r5 = r[4]
-        r6 = r[5]
-        r7 = r[6]
-        r8 = r[7]
-        real = r[8]  #gabarito oraculo, ou seja, acertando todos os periodos de alta
+    r1 = r[0]
+    r2 = r[1]
+    r3 = r[2]
+    r4 = r[3]
+    r5 = r[4]
+    r6 = r[5]
+    r7 = r[6]
+    r8 = r[7]
+    real = r[8]  #gabarito oraculo, ou seja, acertando todos os periodos de alta
 
-        f_metricas.MDgravar(real, r1, "1", saida2)
-        f_metricas.MDgravar(real, r2, "2", saida2)
-        f_metricas.MDgravar(real, r3, "3", saida2)
-        f_metricas.MDgravar(real, r4, "4", saida2)
-        f_metricas.MDgravar(real, r5, "5", saida2)
-        f_metricas.MDgravar(real, r6, "6", saida2)
-        f_metricas.MDgravar(real, r7, "7", saida2)
-        f_metricas.MDgravar(real, r8, "8", saida2)
+    f_metricas.MDgravar(real, r1, "1", saida2)
+    f_metricas.MDgravar(real, r2, "2", saida2)
+    f_metricas.MDgravar(real, r3, "3", saida2)
+    f_metricas.MDgravar(real, r4, "4", saida2)
+    f_metricas.MDgravar(real, r5, "5", saida2)
+    f_metricas.MDgravar(real, r6, "6", saida2)
+    f_metricas.MDgravar(real, r7, "7", saida2)
+    f_metricas.MDgravar(real, r8, "8", saida2)
 
-        gravarPrevisaoClassificadores(r1,r2,r3,r4,r5,r6,r7,r8, real, saida1)
+    gravarPrevisaoClassificadores(r1,r2,r3,r4,r5,r6,r7,r8, real, saida1)
 
-        saida2.close()
-
-        qtde += 1
+    saida2.close()
